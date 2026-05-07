@@ -49,9 +49,9 @@ jobs:
       - name: Read trait name from Cargo.toml
         id: config
         run: |
-          # Grab the 'name' strictly under the [lib] section
+          
           NAME=$(grep -A 3 '\[lib\]' Cargo.toml | grep '^name' | head -n 1 | cut -d'"' -f2)
-          # Cargo automatically replaces hyphens with underscores in compiled file names
+          
           LIB_NAME=${NAME//-/_}
           echo "trait_name=$LIB_NAME" >> $GITHUB_OUTPUT
 
