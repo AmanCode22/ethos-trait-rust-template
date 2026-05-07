@@ -11,7 +11,7 @@ After that go to repo settings-> actions-> general and allow read and write perm
 2. **Edit `manifest.json`** → Set your trait name, version, and description.
 3. **Edit `Cargo.toml`** → Set trait name and also accordingly if required change version.
 4. **(OPTIONAL) Create tags.txt → It helps someone find your trait by searching those specfic keywords.
-3. **Write your code** → Edit `src/trait.rs` with your Rust functions.
+3. **Write your code** → Edit `src/trait.rs` with your Rust functions also keep in mind guide in ethos docs as rust needs special edits.
 4. **Tag a release** → Push a tag like `v1.0.0`.
 5. **Wait for CI** → Workflows build binaries
 6. **Open a PR to foundry** → You must open a pr to foundry for each version bump also, you can find manifest.json in releases use that for PR as that is different.
@@ -38,7 +38,7 @@ Every function you want to use in Ethos must be exported in `src/trait.rs`.
 Example:
 ```rust
 #[no_mangle]
-pub extern "C" fn add(a: i32, b: i32) -> i32 {
+pub extern "C" fn add(a: i16, b: i16) -> i16 {
     a + b
 }
 ```
