@@ -11,7 +11,7 @@ After that go to repo settings-> actions-> general and allow read and write perm
 2. **Edit `manifest.json`** → Set your trait name, version, and description.
 3. **Edit `Cargo.toml`** → Set trait name and also accordingly if required change version.
 4. **(OPTIONAL) Create tags.txt → It helps someone find your trait by searching those specfic keywords.
-3. **Write your code** → Edit `src/trait.rs` with your Rust functions also keep in mind guide in ethos docs as rust needs special edits.
+3. **Write your code** → Edit `src/trait.rs` with your Rust functions.
 4. **Tag a release** → Push a tag like `v1.0.0`.
 5. **Wait for CI** → Workflows build binaries
 6. **Open a PR to foundry** → You must open a pr to foundry for each version bump also, you can find manifest.json in releases use that for PR as that is different.
@@ -37,13 +37,16 @@ Every function you want to use in Ethos must be exported in `src/trait.rs`.
 
 Example:
 ```rust
+use core::ffi::c_int;
+
 #[no_mangle]
-pub extern "C" fn add(a: i16, b: i16) -> i16 {
+pub extern "C" fn add(a: c_int, b: c_int) -> c_int {
     a + b
 }
+
 ```
 
-Then list it in `manifest.json` under `functions`. The CI workflow reads this and generates the Foundry manifest. For more see Ethos docs on editing manifest. Every function must be wrapped in pub extern "C"  and no magle, to prevent function mangling to be compatible with ctypes.
+Then list it in `manifest.json` under `functions`. The CI workflow reads this and generates the Foundry manifest. For more see Ethos docs on editing manifest. Every function must be wrapped in pub extern "C"  and no magle, to prevent function mangling to be compatible with ctypes. Also see docs for data type mapping also. Use of core::ffi is necessary for ctypes compatible binary
 
 
 
